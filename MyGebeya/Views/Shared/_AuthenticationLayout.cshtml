@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGebeyaHome</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Eczar">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inknut+Antiqua:300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500i,700,800i,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez+One">
+
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/Content/materialize.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-better-nav.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="~/fonts/ionicons.min.css">
+</head>
+
+<body  class="align-content-center" style=" background-image: none; background-size:cover;background-repeat:no-repeat;">
+<nav style="background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);" class=" sticky-top navbar navbar-light navbar-expand-md">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="@Url.Action("Home","Home")" data-aos="fade-right" data-aos-once="true" data-aos-duration="500" data-aos-delay="100" style=" font-size: 32px; margin-left:20px; font-family:'Product Sans', serif; color: orangered; text-decoration: none;">My<strong style="color:white;">Gebeya</strong></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+            <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1" style="font-family:Montserrat, sans-serif;font-weight:bold;font-style:normal;">
+            <ul class="nav navbar-nav mx-auto" style="color:rgb(255,255,255);">
+                <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="100"><a class="white-text nav-link active" href="#">Home</a></li>
+                <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="150"><a class="white-text nav-link" href="#" >About Us</a></li>
+                <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="200"><a class="white-text nav-link" href="#" >Contact Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item" role="presentation" data-aos="fade-left" data-aos-duration="500" data-aos-delay="250">@Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "white-text nav-link", @id = "login_Link" })</li>
+                <li class="nav-item" role="presentation" data-aos="fade-left" data-aos-duration="500" data-aos-delay="300">@Html.ActionLink("Sign Up", "Register", "User", new { area = "" }, new { @class = "white-text nav-link", @id = "signup_Link" })</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section id="main_Content" style="align-items: center;" class="flex-column d-flex">
+    <div  class="row">
+
+    </div>
+
+<div style="border-radius: 10px; padding: 20px; width: 30%;  margin-bottom: 100px; margin-top: 100px;align-items: center !important;" class=" card row align-content-center">
+    @RenderBody()
+</div>
+</section>
+
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/aos.js"></script>
+    <script src="/Scripts/script.min.js"></script>
+    <script src="/Scripts/materialize.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+
+</html>

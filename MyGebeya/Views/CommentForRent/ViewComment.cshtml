@@ -1,0 +1,147 @@
+﻿
+@using MyGebeya.Models
+@model MyGebeya.ViewModels.CommentForRentViewModel
+@{
+    ViewBag.Title = "ViewComment";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    MyGebeyaEntities Db = new MyGebeyaEntities();
+
+}
+@if (Model.item is Items_for_rent)
+{
+    Items_for_rent item = (Items_for_rent)Model.item;
+
+    User usr = Db.Users.Single(u => u.user_id == item.user_id);
+    List<Comment_for_rent> comments = Db.Comment_for_rent.Where(c => c.rent_id == item.rent_id).ToList();
+
+
+    <div data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="200" style="margin-top: 50px; width: 70%; height: 75%;" class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+
+
+            <img class="activator" src="@Url.Content(item.item_image_path)">
+
+
+
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">@item.item_name.ToUpper()<i class="material-icons right">more_vert</i></span>
+            <div class="row">
+                <a href="#"><img style="width: 60px; height: 60px" data-aos="fade-right" data-aos-once="true" data-aos-duration="500" data-aos-delay="150" class="circle" src="@Url.Content(usr.profile_picture_path)"></a>
+                <div style="margin-left: 30px;">
+                    <p data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="200"><a href="#">By: @usr.user_name</a></p>
+                    <p data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="250"><a href="#">Phone.No: @usr.phone_no</a></p>
+                    <p data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="300"><a href="#">E-mail: @usr.email</a></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">@item.item_name<i class="material-icons right">close</i></span>
+            <p>@item.item_description</p>
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src="@Url.Content(@usr.profile_picture_path)" alt="" class="circle">
+                    <span class="title">By :</span>
+                    <p>@usr.first_name.ToUpper() @usr.last_name.ToUpper() 
+                    </p>
+                               
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle">email</i>
+                    <span class="title">E-Mail</span>
+                    <p>@usr.email 
+                    </p>
+                                
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">phone</i>
+                    <span class="title">Phone</span>
+                    <p>@usr.phone_no
+                    </p>
+                                
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">payment</i>
+                    <span class="title">Payment Type</span>
+                    <p>@item.payment_type.payment_type1
+                    </p>
+                              
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">payment</i>
+                    <span class="title">Price</span>
+                    <p>@item.price
+                    </p>
+                               
+                </li>
+            </ul>
+        </div>
+        <div class="card-action">
+            @* <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp;Like<b>(123)</b></a> *@
+            @* <a href="#"><i class="fa fa-thumbs-down"></i>&nbsp;Dislike<b>(13)</b></a> *@
+            @* <!-- Modal Trigger --> *@
+            @* *@
+            @* <a class="waves-effect waves-light modal-trigger" href="@Url.Action("ViewComment","Comment",new{id = itemsForSale.sales_id,type = 1})"><i class="fa fa-comment"></i>&nbsp;Comment<b>(45)</b></a> *@
+        </div>
+    </div>
+    <div style="width: 70%;" id="comment" class=" ">
+        <div style="padding: 50px;" class="modal-content">
+            <h6>Comments For:</h6>
+            <h5>@item.item_name</h5>
+            <p><a href="#">By: @usr.user_name</a></p>
+
+            <ul style="overflow: hidden; overflow-y: scroll; height: 55%;" class="collection">
+                @if (comments.Count != 0)
+                {
+                    foreach (var comment in comments)
+                    {
+                        User cUser = Db.Users.Single(u => u.user_id == comment.user_id);
+                        <li class="collection-item avatar">
+                            <img src="@Url.Content(cUser.profile_picture_path)" alt="" class="circle">
+                            <div class="title"><strong>@cUser.user_name.ToUpper()</strong></div>
+                            <p>
+                                @comment.comment
+                            </p>
+                            <em>
+                                @comment.date_added.ToString()
+                            </em>
+                            <a href="#" class="secondary-content"><i class="fa fa-thumbs-o-up"></i></a>
+                        </li>
+                    }
+                }
+
+
+            </ul>
+            @using (Html.BeginForm("AddComment", "CommentForRent", FormMethod.Post, new { enctype = "multipart/form-data", @style = "margin-bottom: 0px; float: left !important;" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col form-group">
+                        @Html.LabelFor(model => model.comment.comment, htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+                        @Html.TextBoxFor(model => model.comment.comment, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.comment.comment, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.HiddenFor(model => model.comment.rent_id, new { Value = item.rent_id })
+
+                    <div class="col form-group">
+                        <button type="submit" style="margin-top: 5px; height: 50px; width: 50px;" class="btn-floating"><i class="fa fa-send"></i></button>
+                    </div>
+
+                </div>
+
+            }
+            @* <form style=" margin-bottom: 0px; float: left !important;"> *@
+            @*     *@
+            @* *@
+            @* </form> *@
+        </div>
+
+    </div>
+
+}
+
+

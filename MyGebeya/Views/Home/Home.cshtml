@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGebeyaHome</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Eczar">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inknut+Antiqua:300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500i,700,800i,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Suez+One">
+
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/Content/materialize.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-better-nav.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="~/fonts/ionicons.min.css">
+</head>
+
+<body style="background-size:cover;background-repeat:no-repeat;">
+<section class="d-flex flex-column justify-content-between" id="hero">
+    <div id="hero_Top">
+        <nav style="border: none; box-shadow: none; background: none;" class=" navbar navbar-light navbar-expand-md">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" data-aos="fade-right" data-aos-duration="500" data-aos-delay="50" style="font-family:'Inknut Antiqua', serif;font-weight:bold;color:rgba(249,38,38,0.9);">My<strong style="color:rgba(85,132,252,0.9);">Gebeya</strong></a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                    <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navcol-1" style="font-family:Montserrat, sans-serif;font-weight:bold;font-style:normal;">
+                    <ul class="nav navbar-nav mx-auto" style="color:rgb(255,255,255);">
+                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="100"><a class="nav-link active" href="#">Home</a></li>
+                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="150"><a class="nav-link" href="#" style="color:#000000;">About Us</a></li>
+                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="200"><a class="nav-link" href="#" style="color:#000000;">Contact Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item" role="presentation" data-aos="fade-left" data-aos-duration="500" data-aos-delay="250">@Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "nav-link", @id = "login_Link" })</li>
+<li class="nav-item" role="presentation" data-aos="fade-left" data-aos-duration="500" data-aos-delay="300">@Html.ActionLink("Sign Up","Register","User",new{area=""},new {@class ="nav-link",@id = "signup_Link" })</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h1 class="text-center" data-aos="fade-right" data-aos-duration="500" data-aos-delay="350" id="first_Text">The Best Market Place</h1>
+        <h1 class="text-center" data-aos="fade-left" data-aos-duration="500" data-aos-delay="350" id="second_Text" style="font-family:Montserrat, sans-serif;font-weight:bold;">Where You Can Find Everything</h1>
+    </div>
+    <div id="hero_Bottom" style="margin-bottom:0px;">
+        <div class="container" style="min-width:0px;max-width:800px;text-align:center;">
+            <div class="row">
+                <div class="col" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+                    <p class="p-top"><i class="fa fa-user"></i><strong>&nbsp;10,000</strong><br></p>
+                    <p class="p-bot" style="margin-bottom:0px;">Users</p>
+                </div>
+                <div class="col with-borders" data-aos="fade-up" data-aos-duration="500" data-aos-delay="450">
+                    <p class="p-top"><i class="material-icons">shopping_cart</i><strong>&nbsp;250,000</strong><br></p>
+                    <p class="p-bot" style="margin-bottom:0px;">Items To Buy</p>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500">
+                    <p class="p-top"><strong>150,000</strong><br></p>
+                    <p class="p-bot" style="margin-bottom:0px;">Items To Rent</p>
+                </div>
+                <div class="col align-self-center" data-aos="fade-up" data-aos-duration="500" data-aos-delay="550"><button class="btn btn-primary btn-block reserve-button" type="button">Sign Up Now</button></div>
+            </div>
+            <div class="row">
+                <div class="col align-self-center"><button class="btn btn-link btn-flat btn-block arrow-button" type="button"><i class="icon ion-ios-arrow-down" style="font-size:45px;"></i></button></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+</body>
+
+</html>

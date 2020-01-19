@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="287c4b1b50e84695ad0755c587fabb54" Name="Diagram1">
+        <EntityTypeShape EntityType="my_gebeyaModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Car" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Car_for_rent" Width="1.5" PointX="6" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Car_type" Width="1.5" PointX="0.75" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Comment" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Comment_for_rent" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Dislike_for_rent_item" Width="1.5" PointX="6" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Dislikes_for_sale_item" Width="1.5" PointX="6" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.House" Width="1.5" PointX="9" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.House_for_rent" Width="1.5" PointX="9" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.House_type" Width="1.5" PointX="6.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Item_type" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Items_for_rent" Width="1.5" PointX="9" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Items_for_sale" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Likes_for_rent_item" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Likes_for_sale_item" Width="1.5" PointX="6" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.payment_type" Width="1.5" PointX="6.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.Rent" Width="1.5" PointX="6.75" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.sale" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_gebeyaModel.User" Width="1.5" PointX="0.75" PointY="23.625" IsExpanded="true" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_Car_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_sales" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_for_rent_Car_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_for_rent_payment_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_for_rent_Rents" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Car_for_rent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Comment_Items_for_sale" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Comment_for_rent_Items_for_rent" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Comment_for_rent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Dislike_for_rent_item_Items_for_rent" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Dislike_for_rent_item_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Dislikes_for_sale_item_Items_for_sale" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Dislikes_for_sale_item_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_House_type1" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_sales" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_for_rent_House_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_for_rent_payment_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_for_rent_Rents" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_House_for_rent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_rent_Item_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_sale_Item_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_rent_payment_type" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_rent_Rents" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_rent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_sale_sales" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Items_for_sale_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Likes_for_rent_item_Items_for_rent" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Likes_for_rent_item_User" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Likes_for_sale_item_sales" ManuallyRouted="false" />
+        <AssociationConnector Association="my_gebeyaModel.FK_Likes_for_sale_item_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

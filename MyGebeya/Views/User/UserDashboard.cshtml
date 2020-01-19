@@ -1,0 +1,203 @@
+﻿
+
+@using MyGebeya.Models
+@model MyGebeya.ViewModels.SalesViewModel
+
+@{
+    ViewBag.Title = "UserDashboard";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    MyGebeyaEntities Db = new MyGebeyaEntities();
+    Model.ItemsForSale.Reverse();
+}
+
+<div class="row align-content-center">
+
+<div style="align-items: center; display: flex; justify-content: center;" class="col-9 flex-column justify-content-center ">
+    <h2 class="align-content-center">RECENTLY ADDED ITEMS FOR SALE</h2>
+    <hr/>
+    @foreach (var item in Model.ItemsForSale)
+    {
+        if (item is Items_for_sale)
+        {
+            Items_for_sale itemsForSale;
+            itemsForSale = (Items_for_sale) item;
+
+            User usr = Db.Users.Single(u => u.user_id == itemsForSale.user_id);
+
+            <div data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="200" style="margin-top: 50px; width: 70%; height: auto;" class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+
+
+                    <img class="activator" src="@Url.Content(itemsForSale.item_image_path)">
+
+
+
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">@itemsForSale.item_name<i class="material-icons right">more_vert</i></span>
+                    <div class="row">
+                        <a href="#"><img style="width: 60px; height: 60px" data-aos="fade-right" data-aos-once="true" data-aos-duration="500" data-aos-delay="150" class="circle" src="@Url.Content(usr.profile_picture_path)"></a>
+                        <div style="margin-left: 30px;">
+                            <p data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="200"><a href="#">By: @usr.user_name</a></p>
+                            <p data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="250"><a href="#">Phone.No: @usr.phone_no</a></p>
+                            <p data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="300"><a href="#">E-mail: @usr.email</a></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">@itemsForSale.item_name<i class="material-icons right">close</i></span>
+                    <p>@itemsForSale.item_description</p>
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                            <img src="@Url.Content(@usr.profile_picture_path)" alt="" class="circle">
+                            <span class="title">By :</span>
+                            <p>
+                                @usr.first_name.ToUpper() @usr.last_name.ToUpper()
+                            </p>
+
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle">email</i>
+                            <span class="title">E-Mail</span>
+                            <p>
+                                @usr.email
+                            </p>
+
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green">phone</i>
+                            <span class="title">Phone</span>
+                            <p>
+                                @usr.phone_no
+                            </p>
+
+                        </li>
+
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle red">payment</i>
+                            <span class="title">Price Per Item</span>
+                            <p>
+                                @itemsForSale.price_per_item
+                            </p>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-action">
+
+                    <a class="waves-effect waves-light" href="@Url.Action("ViewComment", "Comment", new {id = itemsForSale.sales_id, type = 1})"><i class="fa fa-comment "></i>&nbsp;Comment</a>
+                </div>
+            </div>
+
+        }
+        else if (item is Car)
+        {
+            Car isl;
+            isl = (Car) item;
+            User usr = Db.Users.Single(u => u.user_id == isl.user_id);
+            <div data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="200" style="margin-top: 50px; width: 70%; height: 60%;" class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+
+
+                    <img class="activator" src="@Url.Content(isl.car_image_path)">
+
+
+
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">@isl.brand @isl.model<i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">By: @usr.user_name</a></p>
+                    <p><a href="#">Phone.No: @usr.phone_no</a></p>
+                    <p><a href="#">E-mail: @usr.email</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">@isl.brand @isl.model <i class="material-icons right">close</i></span>
+                    <p>@isl.description</p>
+                </div>
+                <div class="card-action">
+                    <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp;Like<b>(123)</b></a>
+                    <a href="#"><i class="fa fa-thumbs-down"></i>&nbsp;Dislike<b>(13)</b></a>
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light modal-trigger" href="#comment"><i class="fa fa-comment"></i>&nbsp;Comment<b>(45)</b></a>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            House isl;
+            isl = (House) item;
+            MyGebeya.Models.User usr = Db.Users.Single(u => u.user_id == isl.user_id);
+            <div data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="200" style="margin-top: 50px; width: 70%; height: 60%;" class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+
+
+                    <img class="activator" src="@Url.Content(isl.house_image_path)">
+
+
+
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">@isl.house_name<i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">By: @usr.user_name</a></p>
+                    <p><a href="#">Phone.No: @usr.phone_no</a></p>
+                    <p><a href="#">E-mail: @usr.email</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">@isl.house_name<i class="material-icons right">close</i></span>
+                    <p>@isl.house_description</p>
+                </div>
+                <div class="card-action">
+                    <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp;Like<b>(123)</b></a>
+                    <a href="#"><i class="fa fa-thumbs-down"></i>&nbsp;Dislike<b>(13)</b></a>
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light modal-trigger" href="#comment"><i class="fa fa-comment"></i>&nbsp;Comment<b>(45)</b></a>
+                </div>
+            </div>
+
+        }
+    }
+
+</div>
+    <div style="margin-top: 50px; border-left: 2px black;" class=" align-content-center col-3">
+        @{
+            MyGebeya.Models.User user = (User) Session["user"];
+        }
+        <h4 style="text-align: center; font-family: 'Product Sans', serif;">Your Profile Information</h4>
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <img src="@Url.Content(@user.profile_picture_path)" alt="" class="circle">
+                <span class="title" style="color: blue; font-family: 'Product Sans',serif;">Your Name</span>
+                <p>
+                    @user.first_name.ToUpper() @user.last_name.ToUpper()
+                </p>
+
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle">email</i>
+                <span class="title" style="color: blue; font-family: 'Product Sans',serif;">E-Mail</span>
+                <p>
+                    @user.email
+                </p>
+
+            </li>
+            <li class="collection-item avatar">
+                <i class="material-icons circle green">phone</i>
+                <span class="title" style="color: blue; font-family: 'Product Sans',serif;">Phone</span>
+                <p>
+                    @user.phone_no
+                </p>
+
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+@Session["UserName"]
+

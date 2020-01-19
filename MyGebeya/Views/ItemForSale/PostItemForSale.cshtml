@@ -1,0 +1,65 @@
+﻿
+@model MyGebeya.ViewModels.PostItemViewModel
+
+
+
+@{
+    ViewBag.Title = "PostItemForSale";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Post Item For Sale</h2>
+
+@using (Html.BeginForm("PostItemForSale", "ItemForSale", FormMethod.Post, new { enctype = "multipart/form-data", @style = "width: 100 %; "}))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+   
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.item_name, htmlAttributes: new { @style="font-size:20px;", @class = "control-label " })
+        @Html.EditorFor(model => model.Item.item_name, new { htmlAttributes = new { @required = true, @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Item.item_name, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.item_description, htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+        @Html.TextBoxFor(model => model.Item.item_description, new { @required = true, @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Item.item_description, "", new { @class = "text-danger" })
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.item_type_id, "item_type_id", htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+
+        @Html.DropDownListFor(model => model.Item.item_type_id, new SelectList(Model.Item.item_Types, "item_type_id", "item_type_name"), "Select Item Type", new { @required = true, @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Item.item_type_id, "", new { @class = "text-danger" })
+    </div>
+    <div style="margin-top: 50px" class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item.price_per_item, htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+            @Html.EditorFor(model => model.Item.price_per_item, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Item.price_per_item, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div style="margin-left:50px" class="form-group">
+            <label  style="font-size:20px;" class="control-label " for="ImageFile">Image</label>
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Item.ImageFile, new { accept = ".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*",required=true, type = "file", name = "Files" })<br /><br />
+              
+            </div>
+
+        </div>
+    </div>
+   
+
+    <div class="form-group">
+        <input type="submit" value="Post" class="btn btn-default" />
+    </div>
+</div>
+}

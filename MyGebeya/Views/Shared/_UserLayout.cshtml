@@ -1,0 +1,138 @@
+﻿@model MyGebeya.ViewModels.BaseViewModel
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGebeyaHome</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-better-nav.min.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="~/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/Content/materialize.min.css">
+    <style type="text/css">
+        @@media (min-width: 990px) {
+            #main_Content {
+                margin-left: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-image: none;">
+
+    <nav style="background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); z-index: 9999" class="navbar sticky-top  navbar-light navbar-expand-md">
+        <div class="container-fluid">
+
+            <a data-aos="fade-right" data-aos-duration="500" data-aos-once="true" style=" margin-left:0px; text-decoration:none; color: orangered;" href="#" data-target="slide-out" class="sidenav-trigger "><i style="font-size: 35px;" class="material-icons">menu</i></a>
+
+            <a class="navbar-brand" href="@Url.Action("Home","Home")" data-aos="fade-right" data-aos-once="true" data-aos-duration="500" data-aos-delay="100" style=" font-size: 32px; margin-left:20px; font-family:'Product Sans', serif; color: orangered; text-decoration: none;">My<strong style="color:white;">Gebeya</strong></a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="font-family:Montserrat, sans-serif;font-weight:bold;font-style:normal;">
+                <ul class="nav navbar-nav mx-auto" style="color:rgb(255,255,255);">
+                    <!--<li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="100"><a class="nav-link active" href="#">Home</a></li>-->
+                    <!--<li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="150"><a class="nav-link" href="#" style="color:#000000;">About Us</a></li>-->
+                    <!--<li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500" data-aos-delay="200"><a class="nav-link" href="#" style="color:#000000;">Contact Us</a></li>-->
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li data-aos="fade-left" data-aos-once="true" data-aos-duration="500" data-aos-delay="250"><a href="#" id="login_Link" style="font-family:'Product Sans', serif; color:white; font-size: 25px">@Model.User.user_name</a></li>
+                    <li data-aos="fade-left" data-aos-once="true" data-aos-duration="500" data-aos-delay="300"><a href="#" id="signup_Link" style="/*color:#ffffff;*/"><img style="width: 55px; height: 55px; vertical-align: middle; margin: 6px; " class="circle" src="@Url.Content(Model.User.profile_picture_path)" /></a></li>
+                </ul>
+                <a class='align-self-center dropdown-trigger btn-flat' href='#' data-constrainWidth="false" data-target='dropdown1'><i class="fa fa-caret-down"></i></a>
+
+                <!-- Dropdown Structure -->
+                <ul style="width: 300px !important" id='dropdown1' class=' dropdown-content'>
+                    <li><a style="text-decoration: none" class="blue-text" onclick="return confirm('Are you sure you want to Log Out?')" href="@Url.Action("LogOut","User")"><i class="  fa fa-sign-out"></i>Logout</a></li>
+                    <li><a style="text-decoration: none" class="blue-text" href="@Url.Action("Edit","User")"><i class="fa fa-user-circle-o"></i>My Profile</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a style="text-decoration: none" class="blue-text" href="#!">About The Developer</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <ul style="padding-top: 65px; -webkit-transition: all 0.2s ease-in-out;" id="slide-out" class="sidenav">
+        <li>
+            <div class="">
+                <div style="background-color: lightsalmon ; padding: 10px;" class="row">
+                    <div class="col-4 align-self-center">
+                        <a href="#"><img style="width: 60px; height: 60px" data-aos="fade-right" data-aos-once="true" data-aos-duration="500" data-aos-delay="150" class="circle" src="@Url.Content(Model.User.profile_picture_path)"></a>
+                    </div>
+                    <div class="col-8  align-self-start">
+                        <a href="#" style="text-decoration: none;">
+                            <span data-aos-once="true" data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" class="white-text name"><b>@Model.User.first_name.ToUpper() @Model.User.last_name.ToUpper()</b></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="250"><a style="text-decoration: none;" href="@Url.Action("UserDashboard","User")"><i class="fa fa-newspaper-o"></i>&nbsp;Recent Items For Sale </a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="250"><a style="text-decoration: none;" href="@Url.Action("RentDashboard","ItemForRent")"><i class="fa fa-newspaper-o"></i>&nbsp;Recent Items For Rent</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="300"><a style="text-decoration: none;" href="@Url.Action("ShopItem","ItemForSale")"><i class="fa fa-shopping-cart"></i>&nbsp;Shop Items</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="350"><a style="text-decoration: none;" href="@Url.Action("RentItems","ItemForRent")"><i class="fa fa-shopping-cart"></i>&nbsp;Rent Items</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="450"><div class="divider"></div></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="500"><a style="text-decoration: none;" class="subheader">My Tasks</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="550"><a style="text-decoration: none;" class="waves-effect" href="@Url.Action("PostItemForSale","ItemForSale")"><i class="fa fa-upload"></i>&nbsp;Post Items For Sell</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="600"><a style="text-decoration: none;" class="waves-effect" href="@Url.Action("PostItemForRent","ItemForRent")"><i class="fa fa-upload"></i>&nbsp;Post Items For Rent</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="650"><a style="text-decoration: none;" class="waves-effect" href="@Url.Action("FindItemForSale","ItemForSale")"><i class="fa fa-edit"></i>&nbsp;My Items For Sale</a></li>
+        <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="650"><a style="text-decoration: none;" class="waves-effect" href="@Url.Action("FindItemForRent","ItemForRent")"><i class="fa fa-edit"></i>&nbsp;My Items For Rent</a></li>
+        @* <li data-aos="fade-up" data-aos-once="true" data-aos-duration="500" data-aos-delay="650"><a style="text-decoration: none;" class="waves-effect" href="#"><i class="fa fa-send"></i>&nbsp;My Messages</a></li> *@
+    </ul>
+
+    <section id="main_Content" style=" align-items: center;" class="d-flex flex-column">
+        @RenderBody()
+    </section>
+
+
+
+
+
+
+
+
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/aos.js"></script>
+    <script src="/Scripts/script.min.js"></script>
+    <script src="/Scripts/materialize.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.modal').modal();
+            $('.dropdown-trigger').dropdown(
+                {
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrainWidth: false, // Does not change width of dropdown to that of the activator
+                    //hover: true, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left',
+                    // Displays dropdown with edge aligned to the left of button
+                }
+            );
+            x.addListener(myFunction)
+        });
+        function myFunction(x) {
+            if (x.matches) { // If media query matches
+                $('.sidenav').removeClass("sidenav-fixed").sidenav();
+
+            } else {
+                $('.sidenav').addClass("sidenav-fixed").sidenav();
+
+            }
+        }
+        var x = window.matchMedia("(max-width: 700px)")
+        myFunction(x) // Call listener function at run time
+        x.addListener(myFunction) // Attach listener function on state changes
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿@model MyGebeya.Models.User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_AuthenticationLayout.cshtml";
+}
+
+@* <h2>Register</h2> *@
+
+@* <div style="width: 50%;" class="row align-content-center"> *@
+    @using (Html.BeginForm("Register","User",FormMethod.Post,new{enctype="multipart/form-data", @style ="width:100%;"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>User Registration</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @required = true, @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @required = true, @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.user_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @required = true, @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @required = true, @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @required = true, @type ="password" ,@class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.phone_no, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.phone_no, new { htmlAttributes = new { @required = true, @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phone_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+               
+                <label class="control-label col-md-2 " for ="ImageFile">Profile Picture</label>
+                <div class="col-md-10">
+                    <input accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" type="file" id="ImageFile" required="true"  name="ImageFile" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sign Up" class="btn btn-default" required />
+                </div>
+            </div>
+        </div>
+    }
+
+@* </div> *@
+
+

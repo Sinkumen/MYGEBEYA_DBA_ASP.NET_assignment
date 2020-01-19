@@ -1,0 +1,1906 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="my_gebeyaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="profile_picture_path" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="car_id" />
+          </Key>
+          <Property Name="car_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_of_seats" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="availability" Type="bit" Nullable="false" />
+          <Property Name="car_type_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="sales_id" Type="int" Nullable="false" />
+          <Property Name="car_image_path" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="Car_for_rent">
+          <Key>
+            <PropertyRef Name="car_id" />
+          </Key>
+          <Property Name="car_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+          <Property Name="number_of_seats" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="payment_type_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="availability" Type="bit" Nullable="false" />
+          <Property Name="car_type_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="rent_id" Type="int" Nullable="false" />
+          <Property Name="car_image_path" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="Car_type">
+          <Key>
+            <PropertyRef Name="car_type_id" />
+          </Key>
+          <Property Name="car_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type_description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="sales_id" Type="int" Nullable="false" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="Comment_for_rent">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="rent_id" Type="int" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="Dislike_for_rent_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="rent_id" Type="int" Nullable="false" />
+          <Property Name="Dislike" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Dislikes_for_sale_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="sales_id" Type="int" Nullable="false" />
+          <Property Name="Dislike" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="house_id" />
+          </Key>
+          <Property Name="house_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_of_bedrooms" Type="int" Nullable="false" />
+          <Property Name="number_of_bathrooms" Type="int" Nullable="false" />
+          <Property Name="house_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="house_description" Type="nvarchar(max)" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="availability" Type="bit" Nullable="false" />
+          <Property Name="house_type_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="sales_id" Type="int" Nullable="false" />
+          <Property Name="house_image_path" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="House_for_rent">
+          <Key>
+            <PropertyRef Name="house_id" />
+          </Key>
+          <Property Name="house_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_of_bedrooms" Type="int" Nullable="false" />
+          <Property Name="number_of_bathrooms" Type="int" Nullable="false" />
+          <Property Name="house_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="house_description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="availability" Type="bit" Nullable="false" />
+          <Property Name="payment_type_id" Type="int" Nullable="false" />
+          <Property Name="house_type_id" Type="int" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="rent_id" Type="int" Nullable="false" />
+          <Property Name="house_image_path" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="House_type">
+          <Key>
+            <PropertyRef Name="house_type_id" />
+          </Key>
+          <Property Name="house_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type_description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Item_type">
+          <Key>
+            <PropertyRef Name="item_type_id" />
+          </Key>
+          <Property Name="item_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_type_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_type_description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Items_for_rent">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_description" Type="nvarchar(max)" />
+          <Property Name="availablity" Type="bit" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="payment_type_id" Type="int" Nullable="false" />
+          <Property Name="item_type_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="rent_id" Type="int" Nullable="false" />
+          <Property Name="item_image_path" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="Items_for_sale">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_description" Type="nvarchar(max)" />
+          <Property Name="availability" Type="bit" Nullable="false" />
+          <Property Name="price_per_item" Type="int" Nullable="false" />
+          <Property Name="item_type_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="sales_id" Type="int" Nullable="false" />
+          <Property Name="item_image_path" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_added" Type="date" />
+        </EntityType>
+        <EntityType Name="Likes_for_rent_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="rent_id" Type="int" Nullable="false" />
+          <Property Name="Likes" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Likes_for_sale_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="sales_id" Type="int" Nullable="false" />
+          <Property Name="Likes" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="payment_type">
+          <Key>
+            <PropertyRef Name="payment_type_id" />
+          </Key>
+          <Property Name="payment_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="payment_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rents">
+          <Key>
+            <PropertyRef Name="rent_id" />
+          </Key>
+          <Property Name="rent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sales">
+          <Key>
+            <PropertyRef Name="sales_id" />
+          </Key>
+          <Property Name="sales_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user-id" />
+          </Key>
+          <Property Name="user-id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_no" Type="int" Nullable="false" />
+          <Property Name="profile_picture_path" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_Car_Car_type">
+          <End Role="Car_type" Type="Self.Car_type" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_type">
+              <PropertyRef Name="car_type_id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="car_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_Car_type">
+          <End Role="Car_type" Type="Self.Car_type" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_type">
+              <PropertyRef Name="car_type_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="car_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_type_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_Rents">
+          <End Role="Rents" Type="Self.Rents" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_sales">
+          <End Role="sales" Type="Self.sales" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_for_rent_Items_for_rent">
+          <End Role="Rents" Type="Self.Rents" Multiplicity="0..1" />
+          <End Role="Comment_for_rent" Type="Self.Comment_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Comment_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment_for_rent" Type="Self.Comment_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Comment_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Items_for_sale">
+          <End Role="sales" Type="Self.sales" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislike_for_rent_item_Items_for_rent">
+          <End Role="Rents" Type="Self.Rents" Multiplicity="1" />
+          <End Role="Dislike_for_rent_item" Type="Self.Dislike_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Dislike_for_rent_item">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislike_for_rent_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Dislike_for_rent_item" Type="Self.Dislike_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Dislike_for_rent_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislikes_for_sale_item_Items_for_sale">
+          <End Role="sales" Type="Self.sales" Multiplicity="1" />
+          <End Role="Dislikes_for_sale_item" Type="Self.Dislikes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Dislikes_for_sale_item">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislikes_for_sale_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Dislikes_for_sale_item" Type="Self.Dislikes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Dislikes_for_sale_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_House_type">
+          <End Role="House_type" Type="Self.House_type" Multiplicity="0..1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="House_type">
+              <PropertyRef Name="house_type_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="house_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_type_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_Rents">
+          <End Role="Rents" Type="Self.Rents" Multiplicity="1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_House_type1">
+          <End Role="House_type" Type="Self.House_type" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="House_type">
+              <PropertyRef Name="house_type_id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="house_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_sales">
+          <End Role="sales" Type="Self.sales" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_Item_type">
+          <End Role="Item_type" Type="Self.Item_type" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_type">
+              <PropertyRef Name="item_type_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="item_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_type_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_Rents">
+          <End Role="Rents" Type="Self.Rents" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_sale_Item_type">
+          <End Role="Item_type" Type="Self.Item_type" Multiplicity="1" />
+          <End Role="Items_for_sale" Type="Self.Items_for_sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_type">
+              <PropertyRef Name="item_type_id" />
+            </Principal>
+            <Dependent Role="Items_for_sale">
+              <PropertyRef Name="item_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_sale_sales">
+          <End Role="sales" Type="Self.sales" Multiplicity="1" />
+          <End Role="Items_for_sale" Type="Self.Items_for_sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Items_for_sale">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_sale_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Items_for_sale" Type="Self.Items_for_sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Items_for_sale">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_rent_item_Items_for_rent">
+          <End Role="Rents" Type="Self.Rents" Multiplicity="1" />
+          <End Role="Likes_for_rent_item" Type="Self.Likes_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Likes_for_rent_item">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_rent_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Likes_for_rent_item" Type="Self.Likes_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Likes_for_rent_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_sale_item_sales">
+          <End Role="sales" Type="Self.sales" Multiplicity="1" />
+          <End Role="Likes_for_sale_item" Type="Self.Likes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Likes_for_sale_item">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_sale_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Likes_for_sale_item" Type="Self.Likes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user-id" />
+            </Principal>
+            <Dependent Role="Likes_for_sale_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="my_gebeyaModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car_for_rent" EntityType="Self.Car_for_rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car_type" EntityType="Self.Car_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment_for_rent" EntityType="Self.Comment_for_rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dislike_for_rent_item" EntityType="Self.Dislike_for_rent_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dislikes_for_sale_item" EntityType="Self.Dislikes_for_sale_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="House" EntityType="Self.House" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="House_for_rent" EntityType="Self.House_for_rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="House_type" EntityType="Self.House_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_type" EntityType="Self.Item_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items_for_rent" EntityType="Self.Items_for_rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items_for_sale" EntityType="Self.Items_for_sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Likes_for_rent_item" EntityType="Self.Likes_for_rent_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Likes_for_sale_item" EntityType="Self.Likes_for_sale_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_type" EntityType="Self.payment_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rents" EntityType="Self.Rents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Car_Car_type" Association="Self.FK_Car_Car_type">
+            <End Role="Car_type" EntitySet="Car_type" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_Car_type" Association="Self.FK_Car_for_rent_Car_type">
+            <End Role="Car_type" EntitySet="Car_type" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_payment_type" Association="Self.FK_Car_for_rent_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_Rents" Association="Self.FK_Car_for_rent_Rents">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_User" Association="Self.FK_Car_for_rent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_sales" Association="Self.FK_Car_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_User" Association="Self.FK_Car_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_for_rent_Items_for_rent" Association="Self.FK_Comment_for_rent_Items_for_rent">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Comment_for_rent" EntitySet="Comment_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_for_rent_User" Association="Self.FK_Comment_for_rent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment_for_rent" EntitySet="Comment_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Items_for_sale" Association="Self.FK_Comment_Items_for_sale">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislike_for_rent_item_Items_for_rent" Association="Self.FK_Dislike_for_rent_item_Items_for_rent">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Dislike_for_rent_item" EntitySet="Dislike_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislike_for_rent_item_User" Association="Self.FK_Dislike_for_rent_item_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Dislike_for_rent_item" EntitySet="Dislike_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislikes_for_sale_item_Items_for_sale" Association="Self.FK_Dislikes_for_sale_item_Items_for_sale">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Dislikes_for_sale_item" EntitySet="Dislikes_for_sale_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislikes_for_sale_item_User" Association="Self.FK_Dislikes_for_sale_item_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Dislikes_for_sale_item" EntitySet="Dislikes_for_sale_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_House_type" Association="Self.FK_House_for_rent_House_type">
+            <End Role="House_type" EntitySet="House_type" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_payment_type" Association="Self.FK_House_for_rent_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_Rents" Association="Self.FK_House_for_rent_Rents">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_User" Association="Self.FK_House_for_rent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_House_type1" Association="Self.FK_House_House_type1">
+            <End Role="House_type" EntitySet="House_type" />
+            <End Role="House" EntitySet="House" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_sales" Association="Self.FK_House_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="House" EntitySet="House" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_User" Association="Self.FK_House_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="House" EntitySet="House" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_Item_type" Association="Self.FK_Items_for_rent_Item_type">
+            <End Role="Item_type" EntitySet="Item_type" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_payment_type" Association="Self.FK_Items_for_rent_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_Rents" Association="Self.FK_Items_for_rent_Rents">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_User" Association="Self.FK_Items_for_rent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_sale_Item_type" Association="Self.FK_Items_for_sale_Item_type">
+            <End Role="Item_type" EntitySet="Item_type" />
+            <End Role="Items_for_sale" EntitySet="Items_for_sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_sale_sales" Association="Self.FK_Items_for_sale_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Items_for_sale" EntitySet="Items_for_sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_sale_User" Association="Self.FK_Items_for_sale_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Items_for_sale" EntitySet="Items_for_sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_rent_item_Items_for_rent" Association="Self.FK_Likes_for_rent_item_Items_for_rent">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Likes_for_rent_item" EntitySet="Likes_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_rent_item_User" Association="Self.FK_Likes_for_rent_item_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Likes_for_rent_item" EntitySet="Likes_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_sale_item_sales" Association="Self.FK_Likes_for_sale_item_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Likes_for_sale_item" EntitySet="Likes_for_sale_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_sale_item_User" Association="Self.FK_Likes_for_sale_item_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Likes_for_sale_item" EntitySet="Likes_for_sale_item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="my_gebeyaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="profile_picture_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="car_id" />
+          </Key>
+          <Property Name="car_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="number_of_seats" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="availability" Type="Boolean" Nullable="false" />
+          <Property Name="car_type_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="sales_id" Type="Int32" Nullable="false" />
+          <Property Name="car_image_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Car_type" Relationship="Self.FK_Car_Car_type" FromRole="Car" ToRole="Car_type" />
+          <NavigationProperty Name="sale" Relationship="Self.FK_Car_sales" FromRole="Car" ToRole="sales" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Car_User" FromRole="Car" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Car_for_rent">
+          <Key>
+            <PropertyRef Name="car_id" />
+          </Key>
+          <Property Name="car_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="number_of_seats" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="payment_type_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="availability" Type="Boolean" Nullable="false" />
+          <Property Name="car_type_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="rent_id" Type="Int32" Nullable="false" />
+          <Property Name="car_image_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Car_type" Relationship="Self.FK_Car_for_rent_Car_type" FromRole="Car_for_rent" ToRole="Car_type" />
+          <NavigationProperty Name="payment_type" Relationship="Self.FK_Car_for_rent_payment_type" FromRole="Car_for_rent" ToRole="payment_type" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Car_for_rent_Rents" FromRole="Car_for_rent" ToRole="Rents" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Car_for_rent_User" FromRole="Car_for_rent" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Car_type">
+          <Key>
+            <PropertyRef Name="car_type_id" />
+          </Key>
+          <Property Name="car_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Car_Car_type" FromRole="Car_type" ToRole="Car" />
+          <NavigationProperty Name="Car_for_rent" Relationship="Self.FK_Car_for_rent_Car_type" FromRole="Car_type" ToRole="Car_for_rent" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="sales_id" Type="Int32" Nullable="false" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="sale" Relationship="Self.FK_Comment_Items_for_sale" FromRole="Comment" ToRole="sales" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Comment_for_rent">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="rent_id" Type="Int32" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Comment_for_rent_Items_for_rent" FromRole="Comment_for_rent" ToRole="Rents" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comment_for_rent_User" FromRole="Comment_for_rent" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Dislike_for_rent_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="rent_id" Type="Int32" Nullable="false" />
+          <Property Name="Dislike" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Dislike_for_rent_item_Items_for_rent" FromRole="Dislike_for_rent_item" ToRole="Rents" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Dislike_for_rent_item_User" FromRole="Dislike_for_rent_item" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Dislikes_for_sale_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="sales_id" Type="Int32" Nullable="false" />
+          <Property Name="Dislike" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="sale" Relationship="Self.FK_Dislikes_for_sale_item_Items_for_sale" FromRole="Dislikes_for_sale_item" ToRole="sales" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Dislikes_for_sale_item_User" FromRole="Dislikes_for_sale_item" ToRole="User" />
+        </EntityType>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="house_id" />
+          </Key>
+          <Property Name="house_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="number_of_bedrooms" Type="Int32" Nullable="false" />
+          <Property Name="number_of_bathrooms" Type="Int32" Nullable="false" />
+          <Property Name="house_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="house_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="availability" Type="Boolean" Nullable="false" />
+          <Property Name="house_type_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="sales_id" Type="Int32" Nullable="false" />
+          <Property Name="house_image_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="House_type" Relationship="Self.FK_House_House_type1" FromRole="House" ToRole="House_type" />
+          <NavigationProperty Name="sale" Relationship="Self.FK_House_sales" FromRole="House" ToRole="sales" />
+          <NavigationProperty Name="User" Relationship="Self.FK_House_User" FromRole="House" ToRole="User" />
+        </EntityType>
+        <EntityType Name="House_for_rent">
+          <Key>
+            <PropertyRef Name="house_id" />
+          </Key>
+          <Property Name="house_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="number_of_bedrooms" Type="Int32" Nullable="false" />
+          <Property Name="number_of_bathrooms" Type="Int32" Nullable="false" />
+          <Property Name="house_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="house_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="availability" Type="Boolean" Nullable="false" />
+          <Property Name="payment_type_id" Type="Int32" Nullable="false" />
+          <Property Name="house_type_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="rent_id" Type="Int32" Nullable="false" />
+          <Property Name="house_image_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="House_type" Relationship="Self.FK_House_for_rent_House_type" FromRole="House_for_rent" ToRole="House_type" />
+          <NavigationProperty Name="payment_type" Relationship="Self.FK_House_for_rent_payment_type" FromRole="House_for_rent" ToRole="payment_type" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_House_for_rent_Rents" FromRole="House_for_rent" ToRole="Rents" />
+          <NavigationProperty Name="User" Relationship="Self.FK_House_for_rent_User" FromRole="House_for_rent" ToRole="User" />
+        </EntityType>
+        <EntityType Name="House_type">
+          <Key>
+            <PropertyRef Name="house_type_id" />
+          </Key>
+          <Property Name="house_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Houses" Relationship="Self.FK_House_House_type1" FromRole="House_type" ToRole="House" />
+          <NavigationProperty Name="House_for_rent" Relationship="Self.FK_House_for_rent_House_type" FromRole="House_type" ToRole="House_for_rent" />
+        </EntityType>
+        <EntityType Name="Item_type">
+          <Key>
+            <PropertyRef Name="item_type_id" />
+          </Key>
+          <Property Name="item_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="item_type_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items_for_rent" Relationship="Self.FK_Items_for_rent_Item_type" FromRole="Item_type" ToRole="Items_for_rent" />
+          <NavigationProperty Name="Items_for_sale" Relationship="Self.FK_Items_for_sale_Item_type" FromRole="Item_type" ToRole="Items_for_sale" />
+        </EntityType>
+        <EntityType Name="Items_for_rent">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="item_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="availablity" Type="Boolean" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="payment_type_id" Type="Int32" Nullable="false" />
+          <Property Name="item_type_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="rent_id" Type="Int32" Nullable="false" />
+          <Property Name="item_image_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Item_type" Relationship="Self.FK_Items_for_rent_Item_type" FromRole="Items_for_rent" ToRole="Item_type" />
+          <NavigationProperty Name="payment_type" Relationship="Self.FK_Items_for_rent_payment_type" FromRole="Items_for_rent" ToRole="payment_type" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Items_for_rent_Rents" FromRole="Items_for_rent" ToRole="Rents" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Items_for_rent_User" FromRole="Items_for_rent" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Items_for_sale">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="item_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="availability" Type="Boolean" Nullable="false" />
+          <Property Name="price_per_item" Type="Int32" Nullable="false" />
+          <Property Name="item_type_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="sales_id" Type="Int32" Nullable="false" />
+          <Property Name="item_image_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Item_type" Relationship="Self.FK_Items_for_sale_Item_type" FromRole="Items_for_sale" ToRole="Item_type" />
+          <NavigationProperty Name="sale" Relationship="Self.FK_Items_for_sale_sales" FromRole="Items_for_sale" ToRole="sales" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Items_for_sale_User" FromRole="Items_for_sale" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Likes_for_rent_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="rent_id" Type="Int32" Nullable="false" />
+          <Property Name="Likes" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Likes_for_rent_item_Items_for_rent" FromRole="Likes_for_rent_item" ToRole="Rents" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Likes_for_rent_item_User" FromRole="Likes_for_rent_item" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Likes_for_sale_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="sales_id" Type="Int32" Nullable="false" />
+          <Property Name="Likes" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="sale" Relationship="Self.FK_Likes_for_sale_item_sales" FromRole="Likes_for_sale_item" ToRole="sales" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Likes_for_sale_item_User" FromRole="Likes_for_sale_item" ToRole="User" />
+        </EntityType>
+        <EntityType Name="payment_type">
+          <Key>
+            <PropertyRef Name="payment_type_id" />
+          </Key>
+          <Property Name="payment_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="payment_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Car_for_rent" Relationship="Self.FK_Car_for_rent_payment_type" FromRole="payment_type" ToRole="Car_for_rent" />
+          <NavigationProperty Name="House_for_rent" Relationship="Self.FK_House_for_rent_payment_type" FromRole="payment_type" ToRole="House_for_rent" />
+          <NavigationProperty Name="Items_for_rent" Relationship="Self.FK_Items_for_rent_payment_type" FromRole="payment_type" ToRole="Items_for_rent" />
+        </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="rent_id" />
+          </Key>
+          <Property Name="rent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Car_for_rent" Relationship="Self.FK_Car_for_rent_Rents" FromRole="Rents" ToRole="Car_for_rent" />
+          <NavigationProperty Name="Comment_for_rent" Relationship="Self.FK_Comment_for_rent_Items_for_rent" FromRole="Rents" ToRole="Comment_for_rent" />
+          <NavigationProperty Name="Dislike_for_rent_item" Relationship="Self.FK_Dislike_for_rent_item_Items_for_rent" FromRole="Rents" ToRole="Dislike_for_rent_item" />
+          <NavigationProperty Name="House_for_rent" Relationship="Self.FK_House_for_rent_Rents" FromRole="Rents" ToRole="House_for_rent" />
+          <NavigationProperty Name="Items_for_rent" Relationship="Self.FK_Items_for_rent_Rents" FromRole="Rents" ToRole="Items_for_rent" />
+          <NavigationProperty Name="Likes_for_rent_item" Relationship="Self.FK_Likes_for_rent_item_Items_for_rent" FromRole="Rents" ToRole="Likes_for_rent_item" />
+        </EntityType>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="sales_id" />
+          </Key>
+          <Property Name="sales_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Car_sales" FromRole="sales" ToRole="Car" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Items_for_sale" FromRole="sales" ToRole="Comment" />
+          <NavigationProperty Name="Dislikes_for_sale_item" Relationship="Self.FK_Dislikes_for_sale_item_Items_for_sale" FromRole="sales" ToRole="Dislikes_for_sale_item" />
+          <NavigationProperty Name="Houses" Relationship="Self.FK_House_sales" FromRole="sales" ToRole="House" />
+          <NavigationProperty Name="Items_for_sale" Relationship="Self.FK_Items_for_sale_sales" FromRole="sales" ToRole="Items_for_sale" />
+          <NavigationProperty Name="Likes_for_sale_item" Relationship="Self.FK_Likes_for_sale_item_sales" FromRole="sales" ToRole="Likes_for_sale_item" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_no" Type="Int32" Nullable="false" />
+          <Property Name="profile_picture_path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Car_User" FromRole="User" ToRole="Car" />
+          <NavigationProperty Name="Car_for_rent" Relationship="Self.FK_Car_for_rent_User" FromRole="User" ToRole="Car_for_rent" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Comment_for_rent" Relationship="Self.FK_Comment_for_rent_User" FromRole="User" ToRole="Comment_for_rent" />
+          <NavigationProperty Name="Dislike_for_rent_item" Relationship="Self.FK_Dislike_for_rent_item_User" FromRole="User" ToRole="Dislike_for_rent_item" />
+          <NavigationProperty Name="Dislikes_for_sale_item" Relationship="Self.FK_Dislikes_for_sale_item_User" FromRole="User" ToRole="Dislikes_for_sale_item" />
+          <NavigationProperty Name="Houses" Relationship="Self.FK_House_User" FromRole="User" ToRole="House" />
+          <NavigationProperty Name="House_for_rent" Relationship="Self.FK_House_for_rent_User" FromRole="User" ToRole="House_for_rent" />
+          <NavigationProperty Name="Items_for_rent" Relationship="Self.FK_Items_for_rent_User" FromRole="User" ToRole="Items_for_rent" />
+          <NavigationProperty Name="Items_for_sale" Relationship="Self.FK_Items_for_sale_User" FromRole="User" ToRole="Items_for_sale" />
+          <NavigationProperty Name="Likes_for_rent_item" Relationship="Self.FK_Likes_for_rent_item_User" FromRole="User" ToRole="Likes_for_rent_item" />
+          <NavigationProperty Name="Likes_for_sale_item" Relationship="Self.FK_Likes_for_sale_item_User" FromRole="User" ToRole="Likes_for_sale_item" />
+        </EntityType>
+        <Association Name="FK_Car_Car_type">
+          <End Role="Car_type" Type="Self.Car_type" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_type">
+              <PropertyRef Name="car_type_id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="car_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_sales">
+          <End Role="sales" Type="Self.sale" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_Car_type">
+          <End Role="Car_type" Type="Self.Car_type" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_type">
+              <PropertyRef Name="car_type_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="car_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_type_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_Rents">
+          <End Role="Rents" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Car_for_rent" Type="Self.Car_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Car_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Items_for_sale">
+          <End Role="sales" Type="Self.sale" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_for_rent_Items_for_rent">
+          <End Role="Rents" Type="Self.Rent" Multiplicity="0..1" />
+          <End Role="Comment_for_rent" Type="Self.Comment_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Comment_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment_for_rent" Type="Self.Comment_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Comment_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislike_for_rent_item_Items_for_rent">
+          <End Role="Rents" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Dislike_for_rent_item" Type="Self.Dislike_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Dislike_for_rent_item">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislike_for_rent_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Dislike_for_rent_item" Type="Self.Dislike_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Dislike_for_rent_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislikes_for_sale_item_Items_for_sale">
+          <End Role="sales" Type="Self.sale" Multiplicity="1" />
+          <End Role="Dislikes_for_sale_item" Type="Self.Dislikes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Dislikes_for_sale_item">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dislikes_for_sale_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Dislikes_for_sale_item" Type="Self.Dislikes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Dislikes_for_sale_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_House_type1">
+          <End Role="House_type" Type="Self.House_type" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="House_type">
+              <PropertyRef Name="house_type_id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="house_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_sales">
+          <End Role="sales" Type="Self.sale" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="House" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_House_type">
+          <End Role="House_type" Type="Self.House_type" Multiplicity="0..1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="House_type">
+              <PropertyRef Name="house_type_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="house_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_type_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_Rents">
+          <End Role="Rents" Type="Self.Rent" Multiplicity="1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="House_for_rent" Type="Self.House_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="House_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_Item_type">
+          <End Role="Item_type" Type="Self.Item_type" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_type">
+              <PropertyRef Name="item_type_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="item_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_sale_Item_type">
+          <End Role="Item_type" Type="Self.Item_type" Multiplicity="1" />
+          <End Role="Items_for_sale" Type="Self.Items_for_sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_type">
+              <PropertyRef Name="item_type_id" />
+            </Principal>
+            <Dependent Role="Items_for_sale">
+              <PropertyRef Name="item_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_type_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_Rents">
+          <End Role="Rents" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_rent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Items_for_rent" Type="Self.Items_for_rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Items_for_rent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_sale_sales">
+          <End Role="sales" Type="Self.sale" Multiplicity="1" />
+          <End Role="Items_for_sale" Type="Self.Items_for_sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Items_for_sale">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_for_sale_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Items_for_sale" Type="Self.Items_for_sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Items_for_sale">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_rent_item_Items_for_rent">
+          <End Role="Rents" Type="Self.Rent" Multiplicity="1" />
+          <End Role="Likes_for_rent_item" Type="Self.Likes_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rents">
+              <PropertyRef Name="rent_id" />
+            </Principal>
+            <Dependent Role="Likes_for_rent_item">
+              <PropertyRef Name="rent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_rent_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Likes_for_rent_item" Type="Self.Likes_for_rent_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Likes_for_rent_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_sale_item_sales">
+          <End Role="sales" Type="Self.sale" Multiplicity="1" />
+          <End Role="Likes_for_sale_item" Type="Self.Likes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sales">
+              <PropertyRef Name="sales_id" />
+            </Principal>
+            <Dependent Role="Likes_for_sale_item">
+              <PropertyRef Name="sales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_for_sale_item_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Likes_for_sale_item" Type="Self.Likes_for_sale_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Likes_for_sale_item">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyGebeyaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Car_for_rent" EntityType="Self.Car_for_rent" />
+          <EntitySet Name="Car_type" EntityType="Self.Car_type" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Comment_for_rent" EntityType="Self.Comment_for_rent" />
+          <EntitySet Name="Dislike_for_rent_item" EntityType="Self.Dislike_for_rent_item" />
+          <EntitySet Name="Dislikes_for_sale_item" EntityType="Self.Dislikes_for_sale_item" />
+          <EntitySet Name="Houses" EntityType="Self.House" />
+          <EntitySet Name="House_for_rent" EntityType="Self.House_for_rent" />
+          <EntitySet Name="House_type" EntityType="Self.House_type" />
+          <EntitySet Name="Item_type" EntityType="Self.Item_type" />
+          <EntitySet Name="Items_for_rent" EntityType="Self.Items_for_rent" />
+          <EntitySet Name="Items_for_sale" EntityType="Self.Items_for_sale" />
+          <EntitySet Name="Likes_for_rent_item" EntityType="Self.Likes_for_rent_item" />
+          <EntitySet Name="Likes_for_sale_item" EntityType="Self.Likes_for_sale_item" />
+          <EntitySet Name="payment_type" EntityType="Self.payment_type" />
+          <EntitySet Name="Rents" EntityType="Self.Rent" />
+          <EntitySet Name="sales" EntityType="Self.sale" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Car_Car_type" Association="Self.FK_Car_Car_type">
+            <End Role="Car_type" EntitySet="Car_type" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_sales" Association="Self.FK_Car_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_User" Association="Self.FK_Car_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_Car_type" Association="Self.FK_Car_for_rent_Car_type">
+            <End Role="Car_type" EntitySet="Car_type" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_payment_type" Association="Self.FK_Car_for_rent_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_Rents" Association="Self.FK_Car_for_rent_Rents">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_for_rent_User" Association="Self.FK_Car_for_rent_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Car_for_rent" EntitySet="Car_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Items_for_sale" Association="Self.FK_Comment_Items_for_sale">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_for_rent_Items_for_rent" Association="Self.FK_Comment_for_rent_Items_for_rent">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Comment_for_rent" EntitySet="Comment_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_for_rent_User" Association="Self.FK_Comment_for_rent_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment_for_rent" EntitySet="Comment_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislike_for_rent_item_Items_for_rent" Association="Self.FK_Dislike_for_rent_item_Items_for_rent">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Dislike_for_rent_item" EntitySet="Dislike_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislike_for_rent_item_User" Association="Self.FK_Dislike_for_rent_item_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Dislike_for_rent_item" EntitySet="Dislike_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislikes_for_sale_item_Items_for_sale" Association="Self.FK_Dislikes_for_sale_item_Items_for_sale">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Dislikes_for_sale_item" EntitySet="Dislikes_for_sale_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dislikes_for_sale_item_User" Association="Self.FK_Dislikes_for_sale_item_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Dislikes_for_sale_item" EntitySet="Dislikes_for_sale_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_House_type1" Association="Self.FK_House_House_type1">
+            <End Role="House_type" EntitySet="House_type" />
+            <End Role="House" EntitySet="Houses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_sales" Association="Self.FK_House_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="House" EntitySet="Houses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_User" Association="Self.FK_House_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="House" EntitySet="Houses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_House_type" Association="Self.FK_House_for_rent_House_type">
+            <End Role="House_type" EntitySet="House_type" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_payment_type" Association="Self.FK_House_for_rent_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_Rents" Association="Self.FK_House_for_rent_Rents">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_for_rent_User" Association="Self.FK_House_for_rent_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="House_for_rent" EntitySet="House_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_Item_type" Association="Self.FK_Items_for_rent_Item_type">
+            <End Role="Item_type" EntitySet="Item_type" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_sale_Item_type" Association="Self.FK_Items_for_sale_Item_type">
+            <End Role="Item_type" EntitySet="Item_type" />
+            <End Role="Items_for_sale" EntitySet="Items_for_sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_payment_type" Association="Self.FK_Items_for_rent_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_Rents" Association="Self.FK_Items_for_rent_Rents">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_rent_User" Association="Self.FK_Items_for_rent_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Items_for_rent" EntitySet="Items_for_rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_sale_sales" Association="Self.FK_Items_for_sale_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Items_for_sale" EntitySet="Items_for_sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_for_sale_User" Association="Self.FK_Items_for_sale_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Items_for_sale" EntitySet="Items_for_sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_rent_item_Items_for_rent" Association="Self.FK_Likes_for_rent_item_Items_for_rent">
+            <End Role="Rents" EntitySet="Rents" />
+            <End Role="Likes_for_rent_item" EntitySet="Likes_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_rent_item_User" Association="Self.FK_Likes_for_rent_item_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Likes_for_rent_item" EntitySet="Likes_for_rent_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_sale_item_sales" Association="Self.FK_Likes_for_sale_item_sales">
+            <End Role="sales" EntitySet="sales" />
+            <End Role="Likes_for_sale_item" EntitySet="Likes_for_sale_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_for_sale_item_User" Association="Self.FK_Likes_for_sale_item_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Likes_for_sale_item" EntitySet="Likes_for_sale_item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="my_gebeyaModelStoreContainer" CdmEntityContainer="MyGebeyaEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="profile_picture_path" ColumnName="profile_picture_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="car_id" ColumnName="car_id" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="number_of_seats" ColumnName="number_of_seats" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="car_type_id" ColumnName="car_type_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="car_image_path" ColumnName="car_image_path" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car_for_rent">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Car_for_rent">
+              <MappingFragment StoreEntitySet="Car_for_rent">
+                <ScalarProperty Name="car_id" ColumnName="car_id" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="number_of_seats" ColumnName="number_of_seats" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="payment_type_id" ColumnName="payment_type_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="car_type_id" ColumnName="car_type_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+                <ScalarProperty Name="car_image_path" ColumnName="car_image_path" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car_type">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Car_type">
+              <MappingFragment StoreEntitySet="Car_type">
+                <ScalarProperty Name="car_type_id" ColumnName="car_type_id" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_description" ColumnName="type_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment_for_rent">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Comment_for_rent">
+              <MappingFragment StoreEntitySet="Comment_for_rent">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dislike_for_rent_item">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Dislike_for_rent_item">
+              <MappingFragment StoreEntitySet="Dislike_for_rent_item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+                <ScalarProperty Name="Dislike" ColumnName="Dislike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dislikes_for_sale_item">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Dislikes_for_sale_item">
+              <MappingFragment StoreEntitySet="Dislikes_for_sale_item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="Dislike" ColumnName="Dislike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Houses">
+            <EntityTypeMapping TypeName="my_gebeyaModel.House">
+              <MappingFragment StoreEntitySet="House">
+                <ScalarProperty Name="house_id" ColumnName="house_id" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="number_of_bedrooms" ColumnName="number_of_bedrooms" />
+                <ScalarProperty Name="number_of_bathrooms" ColumnName="number_of_bathrooms" />
+                <ScalarProperty Name="house_name" ColumnName="house_name" />
+                <ScalarProperty Name="house_description" ColumnName="house_description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="house_type_id" ColumnName="house_type_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="house_image_path" ColumnName="house_image_path" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="House_for_rent">
+            <EntityTypeMapping TypeName="my_gebeyaModel.House_for_rent">
+              <MappingFragment StoreEntitySet="House_for_rent">
+                <ScalarProperty Name="house_id" ColumnName="house_id" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="number_of_bedrooms" ColumnName="number_of_bedrooms" />
+                <ScalarProperty Name="number_of_bathrooms" ColumnName="number_of_bathrooms" />
+                <ScalarProperty Name="house_name" ColumnName="house_name" />
+                <ScalarProperty Name="house_description" ColumnName="house_description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="payment_type_id" ColumnName="payment_type_id" />
+                <ScalarProperty Name="house_type_id" ColumnName="house_type_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+                <ScalarProperty Name="house_image_path" ColumnName="house_image_path" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="House_type">
+            <EntityTypeMapping TypeName="my_gebeyaModel.House_type">
+              <MappingFragment StoreEntitySet="House_type">
+                <ScalarProperty Name="house_type_id" ColumnName="house_type_id" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_description" ColumnName="type_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_type">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Item_type">
+              <MappingFragment StoreEntitySet="Item_type">
+                <ScalarProperty Name="item_type_id" ColumnName="item_type_id" />
+                <ScalarProperty Name="item_type_name" ColumnName="item_type_name" />
+                <ScalarProperty Name="item_type_description" ColumnName="item_type_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items_for_rent">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Items_for_rent">
+              <MappingFragment StoreEntitySet="Items_for_rent">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_description" ColumnName="item_description" />
+                <ScalarProperty Name="availablity" ColumnName="availablity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="payment_type_id" ColumnName="payment_type_id" />
+                <ScalarProperty Name="item_type_id" ColumnName="item_type_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+                <ScalarProperty Name="item_image_path" ColumnName="item_image_path" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items_for_sale">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Items_for_sale">
+              <MappingFragment StoreEntitySet="Items_for_sale">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_description" ColumnName="item_description" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="price_per_item" ColumnName="price_per_item" />
+                <ScalarProperty Name="item_type_id" ColumnName="item_type_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="item_image_path" ColumnName="item_image_path" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Likes_for_rent_item">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Likes_for_rent_item">
+              <MappingFragment StoreEntitySet="Likes_for_rent_item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Likes_for_sale_item">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Likes_for_sale_item">
+              <MappingFragment StoreEntitySet="Likes_for_sale_item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_type">
+            <EntityTypeMapping TypeName="my_gebeyaModel.payment_type">
+              <MappingFragment StoreEntitySet="payment_type">
+                <ScalarProperty Name="payment_type_id" ColumnName="payment_type_id" />
+                <ScalarProperty Name="payment_type1" ColumnName="payment_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rents">
+            <EntityTypeMapping TypeName="my_gebeyaModel.Rent">
+              <MappingFragment StoreEntitySet="Rents">
+                <ScalarProperty Name="rent_id" ColumnName="rent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales">
+            <EntityTypeMapping TypeName="my_gebeyaModel.sale">
+              <MappingFragment StoreEntitySet="sales">
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="my_gebeyaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_id" ColumnName="user-id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="profile_picture_path" ColumnName="profile_picture_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

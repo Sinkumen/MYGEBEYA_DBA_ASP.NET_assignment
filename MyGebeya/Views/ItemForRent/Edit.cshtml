@@ -1,0 +1,93 @@
+﻿@model MyGebeya.ViewModels.PostItemForRentViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit Item For Sale </h2>
+
+@using (Html.BeginForm("Edit", "ItemForRent", FormMethod.Post, new { enctype = "multipart/form-data", @style = "width: 100 %; " }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Item.item_id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.item_name, htmlAttributes: new { @style = "font-size:20px;", @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item.item_name, new { htmlAttributes = new { @placeholder = Model.Item.item_name, @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Item.item_name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.item_description, htmlAttributes: new { @style = "font-size:20px;", @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item.item_description, new { htmlAttributes = new { @placeholder = Model.Item.item_description, @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Item.item_description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.item_type_id, "item_type_id", htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+
+        @Html.DropDownListFor(model => model.Item.item_type_id, new SelectList(Model.Item.item_Types, "item_type_id", "item_type_name",Model.Item.item_type_id), "Select Item Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Item.item_type_id, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item.payment_type_id, "item_type_id", htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+
+        @Html.DropDownListFor(model => model.Item.payment_type_id, new SelectList(Model.Item.payment_Types, "payment_type_id", "payment_type1", Model.Item.payment_type_id), "Select Item Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Item.payment_type_id, "", new { @class = "text-danger" })
+    </div>
+    <div style="margin-top: 50px" class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item.price, htmlAttributes: new { @style = "font-size:20px;", @class = "control-label " })
+            @Html.EditorFor(model => model.Item.price, new { htmlAttributes = new { @placeholder = Model.Item.price, @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Item.price, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div style="margin-left:50px" class="form-group">
+            <label style="font-size:20px;" class="control-label " for="ImageFile">Image</label>
+            <div class="col-md-12">
+
+                @Html.TextBoxFor(model => model.Item.ImageFile, new { accept = ".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*", type = "file",required=true, name = "Files", value=Model.Item.ImageFile })<br />
+                <br />
+
+
+            </div>
+
+        </div>
+        <div>
+        <label style="font-size: 20px;" for="image">Current Image</label>
+        <div>
+        <img style="border-radius: 20px" id="image" width="250" height="200" src="@Url.Content(@Model.Item.item_image_path)" />
+        </div>
+        @* *@
+        </div>
+
+    </div>
+
+    <p>@Model.Item.item_type_id</p>
+    <p>@Model.Item.payment_type_id</p>
+    <p>@Model.Item.item_image_path</p>
+    <p></p>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+}
+
+
+

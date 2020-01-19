@@ -1,0 +1,136 @@
+﻿@using MyGebeya.Models
+@model MyGebeya.ViewModels.RentViewModel
+
+@{
+    ViewBag.Title = "FindItemForSale";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>My Items For Rent</h2>
+<div style="width: auto;" class="align-content-center">
+    <hr />
+    <div style="border-radius: 10px;  padding: 20px; margin-bottom: 0" class="card row">
+
+        @using (Html.BeginForm("RentItems", "ItemForRent", FormMethod.Post, new { @style = "width: 100 %; " }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div>
+                    @Html.TextBox("search", "", "", new { @placeholder = "Search By Item Name", @style = "", @class = "form-control" })
+                </div>
+
+                <div style="margin-left: 30px;">
+                    @Html.DropDownList("ItemTypeId", null, new { @class = "form-control" })
+                </div>
+                <button style="margin-left: 20px;" type="submit" class="btn btn-floating"><i class="fa fa-search"></i></button>
+                <a style="margin-left: 10px;" class="btn btn-floating" href="@Url.Action("RentItems", "ItemForRent")"><i class="fa fa-list"></i> </a>
+
+            </div>
+
+
+        }
+
+    </div>
+</div>
+
+
+@{
+
+    var rows = Model.ItemsForRents.GroupBy(r => Model.ItemsForRents.IndexOf(r) / 3).ToList();
+}
+@foreach (var row in rows)
+{
+    <div style="margin-left: 15px; width: 100%" class="row align-content-center">
+        @foreach (Rent item in row)
+        {
+            if (item is Items_for_rent)
+            {
+                Items_for_rent itemsForRent;
+                itemsForRent = (Items_for_rent)item;
+
+                <div style="width: 30%;  margin: 20px;" class="card small">
+                    <div class="card-image">
+                        <img src="@Url.Content(itemsForRent.item_image_path)">
+                        <span style="-webkit-text-stroke-color: black; -webkit-text-stroke-width: 0.5px;" class="card-title">@itemsForRent.item_name</span>
+                    </div>
+                    <div class="card-content">
+                        <p>@itemsForRent.item_description</p>
+                    </div>
+                    <div class="card-action">
+                        <a style="font-size: 20px;  " href="@Url.Action( "ViewComment","CommentForRent", new{id = itemsForRent.rent_id,type = 1})"><i style="margin-right: 10px;" class="fa fa-comment"></i>View Item</a>
+                        <h6><strong style="font-size: 25px; color: orangered;">@itemsForRent.price</strong> Birr Only</h6>
+                        <h6><strong class="card" style="padding: 15px; background: coral; color: white; border-radius: 20px; font-size: 25px">@itemsForRent.Item_type.item_type_name</strong></h6>
+
+                        </div>
+                </div>
+            }
+
+        }
+    </div>
+}
+
+
+@* <table class="table"> *@
+@*     <tr> *@
+@*         <th> *@
+@*            Item Name *@
+@*         </th> *@
+@*         <th> *@
+@*             Item Description *@
+@*         </th> *@
+@*         <th> *@
+@*             Availability *@
+@*         </th> *@
+@*         <th> *@
+@*             Price per Item *@
+@*         </th> *@
+@*         *@
+@*         <th> *@
+@*             Date Added *@
+@*         </th> *@
+@*         <th> *@
+@*             Item Type *@
+@*         </th> *@
+@*         *@
+@*         <th></th> *@
+@*     </tr> *@
+@* *@
+@*     @foreach (sale item in Model.ItemsForSale) { *@
+@*         if (item is Items_for_sale) *@
+@*         { *@
+@*             Items_for_sale itemsForSale; *@
+@*             itemsForSale = (Items_for_sale)item; *@
+@* *@
+@* *@
+@*             <tr> *@
+@*                 <td> *@
+@*                     @Html.DisplayFor(modelItem => itemsForSale.item_name) *@
+@*                 </td> *@
+@*                 <td> *@
+@*                     @Html.DisplayFor(modelItem => itemsForSale.item_description) *@
+@*                 </td> *@
+@*                 <td> *@
+@*                     @Html.DisplayFor(modelItem => itemsForSale.availability) *@
+@*                 </td> *@
+@*                 <td> *@
+@*                     @Html.DisplayFor(modelItem => itemsForSale.price_per_item) *@
+@*                 </td> *@
+@*                 <td> *@
+@*                     @Html.DisplayFor(modelItem => itemsForSale.date_added) *@
+@*                 </td> *@
+@*                 <td> *@
+@*                     @Html.DisplayFor(modelItem => itemsForSale.Item_type.item_type_name) *@
+@*                 </td> *@
+@*                 *@
+@*                 <td> *@
+@*                     @Html.ActionLink("Edit", "Edit","ItemForSale", new { id = itemsForSale.item_id }, new { id=itemsForSale.item_id }) | *@
+@*                     @Html.ActionLink("Delete", "Delete","ItemForSale", new { id = itemsForSale.item_id }, new { id=itemsForSale.item_id }) *@
+@*                 </td> *@
+@*             </tr> *@
+@*     } *@
+@*      *@
+@* } *@
+@* *@
+@* </table> *@
+
